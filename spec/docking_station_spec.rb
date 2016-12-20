@@ -11,4 +11,12 @@ describe DockingStation do
     expect(tobys_bike).to respond_to(:working?)
   end
 
+  it "respond to the method return a bike with one argument" do
+    expect(subject).to respond_to(:return_a_bike).with(1).argument
+  end
+
+  it "respond to the method how many bikes" do
+    expect(subject).to respond_to(:how_many_bikes)
+  end
+
 end
