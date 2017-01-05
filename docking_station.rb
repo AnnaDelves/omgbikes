@@ -1,14 +1,14 @@
 class DockingStation
 
+attr_reader :docked_bike
+
   def release_a_bike
     Bike.new
 
   end
 
-  def return_a_bike(bike_in_use)
-  end
-
-  def bikes
+  def return_a_bike(returned_bike)
+    @docked_bike = returned_bike
   end
 
 end
