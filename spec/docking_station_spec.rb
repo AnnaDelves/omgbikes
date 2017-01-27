@@ -19,7 +19,7 @@ describe DockingStation do
   it "able to dock and register a bike" do
     annas_bike = Bike.new
     subject.return_a_bike(annas_bike)
-    expect(subject.docked_bike).to eq annas_bike
+    expect(subject.docked_bikes).to include annas_bike
   end
 
   it "raises an error when there are no bikes" do
@@ -27,10 +27,8 @@ describe DockingStation do
   end
 
   it "raises an error when you try to dock a bike and the docking station is full" do
-    annas_bike = Bike.new
-    tobys_bike = Bike.new
-    subject.return_a_bike(annas_bike)
-    expect {subject.return_a_bike(tobys_bike)}.to raise_error "There is no space you doughnut"
+    CAPACITY.times {subject.return_a_bike(Bike.new)}
+    expect {subject.return_a_bike(Bike.new)}.to raise_error "There is no space you doughnut"
   end
 
 
