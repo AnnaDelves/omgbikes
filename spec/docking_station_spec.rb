@@ -26,5 +26,12 @@ describe DockingStation do
     expect {subject.release_a_bike}.to raise_error "There are no bikes here you doughnut"
   end
 
+  it "raises an error when you try to dock a bike and the docking station is full" do
+    annas_bike = Bike.new
+    tobys_bike = Bike.new
+    subject.return_a_bike(annas_bike)
+    expect {subject.return_a_bike(tobys_bike)}.to raise_error "There is no space you doughnut"
+  end
+
 
 end

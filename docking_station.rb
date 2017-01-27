@@ -8,6 +8,7 @@ attr_reader :docked_bike
   end
 
   def return_a_bike(returned_bike)
+    fail "There is no space you doughnut" if @docked_bike
     @docked_bike = returned_bike
   end
 
