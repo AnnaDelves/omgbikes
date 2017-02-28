@@ -50,4 +50,10 @@ describe DockingStation do
     expect(subject.release_a_bike).to eq tobys_bike
   end
 
+  it "gives a different error if all bikes are broken" do
+    simons_bike = @brokenbike
+    subject.return_a_bike(simons_bike)
+    expect {subject.release_a_bike}.to raise_error "Sorry, all the bikes here are out of order at the moment, please try another docking station"
+  end
+
 end

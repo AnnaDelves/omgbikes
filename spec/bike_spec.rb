@@ -11,7 +11,7 @@ describe Bike do
     expect(subject.broken?).to eq true
   end
 
-  it "initialises as not broken" do
+  it "initializes as not broken" do
     expect(subject.broken?).to eq false
   end
 
