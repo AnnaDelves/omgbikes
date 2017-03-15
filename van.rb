@@ -16,10 +16,19 @@ class Van
     end
   end
 
-  def unload(garage)
-    @stored_bikes.delete_if do |bike|
-      if bike.broken? == true
-        garage.broken_bikes << bike
+  def unload(bike_dropoff_area)
+    if bike_dropoff_area.is_a?(Garage)
+      #The fact that garages are fake in the text might be messing things up. Toby is going to think about it. If he hasn't come back with a solution this time next week be sad.
+      @stored_bikes.delete_if do |bike|
+        if bike.broken? == true
+          bike_dropoff_area.broken_bikes << bike
+        end
+      end
+    else
+      @stored_bikes.delete_if do |bike|
+        if bike.broken? == false
+          bike_dropoff_area.docked_bikes << bike
+        end
       end
     end
   end

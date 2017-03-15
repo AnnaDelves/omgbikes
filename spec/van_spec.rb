@@ -6,6 +6,7 @@ describe Van do
     @brokenbike = double(:fakebike, broken?: true)
     @dockingstation = double(:fakedockingstation, docked_bikes:[@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike])
     @garage = double(:fakegarage, broken_bikes:[])
+    @emptydockingsation = double(:fakedockingsation, docked_bikes:[])
   end
 
   it 'sets the capacity of the van when initialized' do
@@ -27,7 +28,7 @@ describe Van do
     expect(gresham_street.docked_bikes).to eq [@workingbike, @workingbike]
   end
 
-  it 'will unload bikes when required' do
+  it 'will unload broken bikes when at a garage' do
       white_van = Van.new(:large)
       white_van.stored_bikes = [@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike]
       # Toby needs to research how to keep my vans safe
@@ -41,6 +42,14 @@ describe Van do
       # Toby still needs to research how to keep my vans safe
       white_van.unload(@garage)
       expect(white_van.stored_bikes).to eq [@workingbike, @workingbike]
+  end
+
+  it 'will unload working bikes when at a docking station' do
+      white_van = Van.new(:large)
+      white_van.stored_bikes = [@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike]
+      # Toby needs to research how to keep my vans safe
+      white_van.unload(@emtydockingstation)
+      expect(@emptydockingstation.docked_bikes).to eq [@workingbike, @workingbike]
   end
 
 end
