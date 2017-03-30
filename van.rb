@@ -17,8 +17,8 @@ class Van
   end
 
   def unload(bike_dropoff_area)
-    if bike_dropoff_area.is_a?(Garage)
-      #The fact that garages are fake in the text might be messing things up. Toby is going to think about it. If he hasn't come back with a solution this time next week be sad.
+    if bike_dropoff_area.bike_location_type == 'fixer'
+      #The fact that garages are fake in the test might be messing things up. Toby is going to think about it. If he hasn't come back with a solution this time next week be sad.
       @stored_bikes.delete_if do |bike|
         if bike.broken? == true
           bike_dropoff_area.broken_bikes << bike

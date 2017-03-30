@@ -4,9 +4,9 @@ describe Van do
   before(:each) do
     @workingbike = double(:fakebike, broken?: false)
     @brokenbike = double(:fakebike, broken?: true)
-    @dockingstation = double(:fakedockingstation, docked_bikes:[@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike])
-    @garage = double(:fakegarage, broken_bikes:[])
-    @emptydockingsation = double(:fakedockingsation, docked_bikes:[])
+    @dockingstation = double(:fakedockingstation, docked_bikes:[@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike], bike_location_type:'container')
+    @garage = double(:fakegarage, broken_bikes:[], bike_location_type:'fixer')
+    @emptydockingstation = double(:fakedockingsation, docked_bikes:[], bike_location_type:'container')
   end
 
   it 'sets the capacity of the van when initialized' do
@@ -48,7 +48,7 @@ describe Van do
       white_van = Van.new(:large)
       white_van.stored_bikes = [@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike]
       # Toby needs to research how to keep my vans safe
-      white_van.unload(@emtydockingstation)
+      white_van.unload(@emptydockingstation)
       expect(@emptydockingstation.docked_bikes).to eq [@workingbike, @workingbike]
   end
 

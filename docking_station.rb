@@ -1,12 +1,16 @@
-class DockingStation
+require './locationtype'
 
-  attr_reader :docked_bikes, :capacity
+class DockingStation < LocationType
+
+  attr_reader :docked_bikes, :capacity, :bike_location_type
 
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
-    @docked_bikes = []
+    @docked_bikes = @bikes_in_storage
+    ## Toby needs to work out how to get this characteristic, inherited from parent class LocationType, to actually work properly when we try to use it here. It does not work right now. If he hasn't worked it out in a week's time, be very sad.
     @capacity = capacity
+    @bike_location_type = 'container'
   end
 
   def release_a_bike
