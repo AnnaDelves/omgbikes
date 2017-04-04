@@ -5,7 +5,7 @@ describe Van do
     @workingbike = double(:fakebike, broken?: false)
     @brokenbike = double(:fakebike, broken?: true)
     @dockingstation = double(:fakedockingstation, docked_bikes:[@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike], bike_location_type:'container')
-    @garage = double(:fakegarage, broken_bikes:[], bike_location_type:'fixer')
+    @garage = double(:fakegarage, broken_bike_bay:[], bike_location_type:'fixer')
     @emptydockingstation = double(:fakedockingsation, docked_bikes:[], bike_location_type:'container')
   end
 
@@ -33,7 +33,7 @@ describe Van do
       white_van.stored_bikes = [@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike]
       # Toby needs to research how to keep my vans safe
       white_van.unload(@garage)
-      expect(@garage.broken_bikes).to eq [@brokenbike, @brokenbike, @brokenbike]
+      expect(@garage.broken_bike_bay).to eq [@brokenbike, @brokenbike, @brokenbike]
   end
 
   it 'when bikes are unloaded they will be removed from the van' do

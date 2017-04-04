@@ -21,7 +21,7 @@ class Van
       #The fact that garages are fake in the test might be messing things up. Toby is going to think about it. If he hasn't come back with a solution this time next week be sad.
       @stored_bikes.delete_if do |bike|
         if bike.broken? == true
-          bike_dropoff_area.broken_bikes << bike
+          bike_dropoff_area.broken_bike_bay << bike
         end
       end
     else
