@@ -15,19 +15,19 @@ describe Garage do
     expect(subject.working_bike_bay).to eq []
   end
 
-  it 'fixes bikes' do
-    tobys_garage = Garage.new
-    tobys_garage.broken_bike_bay = [@brokenbike]
-    tobys_garage.fix_bikes
-    expect(@brokenbike).to have_received(:fix)
-  end
-
-  it 'moves them to the working bike bay' do
-    tobys_garage = Garage.new
-    tobys_garage.broken_bike_bay = [@brokenbike, @brokenbike, @brokenbike]
-    tobys_garage.fix_bikes
-    expect(tobys_garage.working_bike_bay.count).to eq 3
-  end
+  # it 'fixes bikes' do
+  #   tobys_garage = Garage.new
+  #   tobys_garage.broken_bike_bay = [@brokenbike]
+  #   tobys_garage.fix_bikes
+  #   expect(@brokenbike).to have_received(:fix)
+  # end
+  #
+  # it 'moves them to the working bike bay' do
+  #   tobys_garage = Garage.new
+  #   tobys_garage.broken_bike_bay = [@brokenbike, @brokenbike, @brokenbike]
+  #   tobys_garage.fix_bikes
+  #   expect(tobys_garage.working_bike_bay.count).to eq 3
+  # end
 
 
 end
