@@ -1,8 +1,8 @@
 # Our Bike Containers
 
-### DockingStation / Van / Garage
+## DockingStation / Van / Garage
 
-#### Methods
+### Methods
 `#release_a_bike`
 
 `#return_a_bike`

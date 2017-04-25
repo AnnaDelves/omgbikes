@@ -8,14 +8,14 @@ class Garage
   end
 
   def fix_bikes
-    @broken_bike_bay.each do |bike|
-      if bike.broken? == true
-        ## STUFF HAPPENS HERE
-
-
-
-
-      @working_bike_bay << bike
+    @broken_bike_bay.delete_if do |bike|
+      bike.fix
+      if bike.broken? == false
+        @working_bike_bay << bike
+        true
+      else
+        raise "You doughnut"
+      end
     end
   end
 

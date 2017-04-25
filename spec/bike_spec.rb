@@ -14,6 +14,15 @@ describe Bike do
     it 'initialises as not broken' do
       expect(subject.broken?).to eq false
     end
-
   end
+
+  describe 'fixing' do
+    it 'has the ability to become fixed' do
+      subject.report_broken
+      subject.fix
+      expect(subject.broken?).to eq false
+    end
+  end
+
+
 end
