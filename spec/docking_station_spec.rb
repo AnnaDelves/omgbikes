@@ -1,6 +1,9 @@
 require './docking_station'
 
 describe DockingStation do
+
+  it_behaves_like BikeContainer
+
   before(:each) do
     @workingbike = double(:fakebike, broken?: false)
     @brokenbike = double(:fakebike, broken?: true)
