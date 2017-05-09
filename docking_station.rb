@@ -1,15 +1,16 @@
 class DockingStation
 
-    include BikeContainer
+  attr_reader :docked_bikes, :bike_location_type, :capacity
 
-  attr_reader :docked_bikes, :bike_location_type
+  DEFAULT_CAPACITY = 20
 
-  # def initialize
-  #   @docked_bikes = []
-  #   ## Toby needs to work out how to get this characteristic, inherited from parent class LocationType, to actually work properly when we try to use it here. It does not work right now. If he hasn't worked it out in a week's time, be very sad.
-  #   @bike_location_type = 'container'
-  # end
-  # Next time we will finish of the initialise portion of the bike container module so that our tests don't get sad when we have two different versions of initialise 
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @docked_bikes = []
+    ## Toby needs to work out how to get this characteristic, inherited from parent class LocationType, to actually work properly when we try to use it here. It does not work right now. If he hasn't worked it out in a week's time, be very sad.
+    @capacity = capacity
+    @bike_location_type = 'container'
+  end
+  # Next time we will finish of the initialise portion of the bike container module so that our tests don't get sad when we have two different versions of initialise
 
   def release_a_bike
     fail "There are no bikes here you doughnut" if @docked_bikes.empty?
