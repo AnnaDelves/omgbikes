@@ -27,19 +27,33 @@ shared_examples_for BikeContainer do
 
   describe 'remove bike' do
 
-    let(:bike)
-    # Yo you gotta finish this bit
+    context 'when there are bikes' do
 
-    it 'is able to have bikes removed' do
-      annas_bike = double :bike
-      subject.add_bike(annas_bike)
-      subject.remove_bike
-      expect(subject.bikes).to be_empty
+      let(:bike) {double :bike}
+
+      before(:each) do
+        subject.add_bike(bike)
+      end
+
+      it 'is able to have bikes removed' do
+        subject.remove_bike
+        expect(subject.bikes).to be_empty
+      end
+
+      it 'checks bike identity' do
+       expect(subject.remove_bike).to eq bike
+     end
+
+   end
+
+   context 'when there are no bikes' do
+
+     it 'raises an error when empty' do
+       expect { expect(subject.remove_bike) }.to raise_error "This #{described_class.name} is empty, you doughnut"
+     end
+
     end
 
-    it 'checks bike identity' do
-     expect(subject.remove_bike).to eq bike
-   end
   end
 
 end

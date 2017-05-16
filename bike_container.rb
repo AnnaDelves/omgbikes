@@ -15,6 +15,7 @@ module BikeContainer
   end
 
   def remove_bike
+    fail "This #{self.class.name} is empty, you doughnut" if empty?
     bikes.pop
   end
 
