@@ -2,6 +2,8 @@ require './docking_station'
 
 describe DockingStation do
 
+  it_behaves_like BikeContainer
+
   before(:each) do
     @workingbike = double(:fakebike, broken?: false)
     @brokenbike = double(:fakebike, broken?: true)
@@ -51,13 +53,13 @@ describe DockingStation do
     it 'able to dock and register a bike' do
       annas_bike = @workingbike
       subject.return_a_bike(annas_bike)
-      expect(subject.docked_bikes).to include annas_bike
+      expect(subject.bikes).to include annas_bike
     end
 
     it 'raises an error when you try to dock a bike and the docking station is full' do
       capacity = 20
       capacity.times { subject.return_a_bike(@workingbike) }
-      expect { subject.return_a_bike(@brokenbike) }.to raise_error 'There is no space you doughnut'
+      expect { subject.return_a_bike(@brokenbike) }.to raise_error "This #{described_class.name} is full, you doughnut"
     end
   end
 
