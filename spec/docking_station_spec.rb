@@ -26,7 +26,7 @@ describe DockingStation do
     end
 
     it 'raises an error when there are no bikes' do
-      expect { subject.release_a_bike }.to raise_error 'There are no bikes here you doughnut'
+      expect { subject.release_a_bike }.to raise_error 'There are no working bikes here you doughnut'
     end
 
     it 'does not release broken bikes' do
@@ -40,7 +40,7 @@ describe DockingStation do
       it "gives a different error if all bikes are broken" do
         simons_bike = @brokenbike
         subject.return_a_bike(simons_bike)
-        expect {subject.release_a_bike}.to raise_error "Sorry, all the bikes here are out of order at the moment, please try another docking station"
+        expect {subject.release_a_bike}.to raise_error "There are no working bikes here you doughnut"
       end
 
   end
