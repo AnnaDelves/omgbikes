@@ -17,7 +17,7 @@ describe Bike do
   end
 
   describe 'fixing' do
-    it 'has the ability to become fixed' do
+    it 'can be fixed' do
       subject.report_broken
       subject.fix
       expect(subject.broken?).to eq false

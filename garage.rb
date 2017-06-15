@@ -1,22 +1,21 @@
 class Garage
 
-  attr_accessor :broken_bike_bay, :working_bike_bay
-
-  def initialize
-    @broken_bike_bay = []
-    @working_bike_bay = []
-  end
+  include BikeContainer
 
   def fix_bikes
-    @broken_bike_bay.delete_if do |bike|
+    broken_bikes.each do |bike|
       bike.fix
-      if bike.broken? == false
-        @working_bike_bay << bike
-        true
-      else
-        raise "You doughnut"
-      end
     end
+  end
+
+  private
+  def broken_bikes
+    @bikes.reject {|bike| bike.working?}
+  end
+
+  private
+  def working_bikes
+    @bikes.reject {|bike| bike.broken?}
   end
 
 end
