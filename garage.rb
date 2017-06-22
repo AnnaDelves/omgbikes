@@ -13,7 +13,6 @@ class Garage
     @bikes.reject {|bike| bike.working?}
   end
 
-  private
   def working_bikes
     @bikes.reject {|bike| bike.broken?}
   end

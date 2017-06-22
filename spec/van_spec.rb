@@ -6,8 +6,8 @@ describe Van do
 it_behaves_like BikeContainer
 
   before(:each) do
-    @workingbike = double(:fakebike, broken?: false)
-    @brokenbike = double(:fakebike, broken?: true)
+    @workingbike = double(:fakebike, broken?: false, working?: true)
+    @brokenbike = double(:fakebike, broken?: true, working?: false)
     @dockingstation = double(:fakedockingstation, docked_bikes:[@workingbike, @brokenbike, @brokenbike, @workingbike, @brokenbike], bike_location_type:'container')
     @garage = double(:fakegarage, bikes:[])
     @emptydockingstation = double(:fakedockingsation, bikes:[])
@@ -31,29 +31,28 @@ it_behaves_like BikeContainer
 
   it 'will unload broken bikes when at a garage' do
       white_van = Van.new
-      white_van.add_bike(@workingbike)
-      white_van.add_bike(@brokenbike)
-      white_van.add_bike(@brokenbike)
+      add_test_bikes(white_van)
       white_van.unload(@garage)
-      expect(@garage.bikes).to eq [@brokenbike, @brokenbike]
+      expect(@garage.bikes).to eq [@brokenbike, @brokenbike, @brokenbike]
   end
 
   it 'when bikes are unloaded they will be removed from the van' do
       white_van = Van.new
-      white_van.add_bike(@workingbike)
-      white_van.add_bike(@brokenbike)
-      white_van.add_bike(@brokenbike)
+      add_test_bikes(white_van)
       white_van.unload(@garage)
-      expect(white_van.bikes).to eq [@workingbike]
+      expect(white_van.bikes).to eq [@workingbike, @workingbike, @workingbike]
   end
 
   it 'will unload working bikes when at a docking station' do
       white_van = Van.new
-      white_van.add_bike(@workingbike)
-      white_van.add_bike(@workingbike)
-      white_van.add_bike(@brokenbike)
+      add_test_bikes(white_van)
       white_van.unload(@emptydockingstation)
-      expect(@emptydockingstation.bikes).to eq [@workingbike, @workingbike]
+      expect(@emptydockingstation.bikes).to eq [@workingbike, @workingbike, @workingbike]
+  end
+
+  def add_test_bikes(van)
+    3.times { van.add_bike(@workingbike) }
+    3.times { van.add_bike(@brokenbike) }
   end
 
 end
