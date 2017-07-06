@@ -32,9 +32,6 @@ it_behaves_like BikeContainer
     expect(gresham_street.bikes).to eq [@workingbike, @workingbike]
   end
 
-
-
-
   it 'will collect fixed bikes from garages when instructed' do
     nicks_garage = @garage
     white_van = Van.new
@@ -48,11 +45,6 @@ it_behaves_like BikeContainer
     white_van.collect(nicks_garage)
     expect(nicks_garage.bikes).to eq [@brokenbike, @brokenbike, @brokenbike]
   end
-
-
-
-
-
 
   it 'will unload broken bikes when at a garage' do
       white_van = Van.new
@@ -78,6 +70,11 @@ it_behaves_like BikeContainer
   def add_test_bikes(van)
     3.times { van.add_bike(@workingbike) }
     3.times { van.add_bike(@brokenbike) }
+  end
+
+  it 'will build vans of different sizes' do
+    small_van = Van.build(:small)
+    expect(small_van.capacity).to eq 15
   end
 
 end
