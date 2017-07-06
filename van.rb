@@ -3,19 +3,7 @@ class Van
   include BikeContainer
 
   def collect(bike_collection_area)
-    if bike_collection_area.class == Garage
-      bike_collection_area.bikes.delete_if do |bike|
-        if bike.working? == true
-          @bikes << bike
-        end
-      end
-    else
-      bike_collection_area.bikes.delete_if do |bike|
-        if bike.broken? == true
-          @bikes << bike
-        end
-      end
-    end
+    bike_collection_area.class == Garage ? handle_garage(bike_collection_area) : handle_docking_station(bike_collection_area)
   end
 
   # Toby has a way to shorten the above - start there next time!
@@ -42,6 +30,14 @@ class Van
 
   def working_bikes
     @bikes.reject {|bike| bike.broken?}
+  end
+
+  def handle_garage(bike_collection_area)
+    bike_collection_area.bikes.delete_if {|bike| @bikes << bike if bike.working?}
+  end
+
+  def handle_docking_station(bike_collection_area)
+    bike_collection_area.bikes.delete_if {|bike| @bikes << bike if bike.broken?}
   end
 
 end
