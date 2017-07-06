@@ -18,7 +18,7 @@ class Van
     end
   end
 
-
+  # Toby has a way to shorten the above - start there next time!
 
   def unload(bike_dropoff_area)
     if bike_dropoff_area.class == Garage
