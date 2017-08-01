@@ -3,12 +3,12 @@ class Van
   include BikeContainer
 
   def self.build(size)
-    capacity = size_lookup(size)
+    capacity = size_lookup[size]
     Van.new(capacity)
   end
 
-  def self.size_lookup(van_size)
-    {small: 15, medium: 20, large: 25}[van_size]
+  def self.size_lookup
+    {small: 15, medium: 20, large: 25}
   end
 
   def collect(bike_collection_area)
@@ -28,14 +28,6 @@ class Van
   end
 
   private
-
-  def broken_bikes
-    @bikes.reject {|bike| bike.working?}
-  end
-
-  def working_bikes
-    @bikes.reject {|bike| bike.broken?}
-  end
 
   def handle_garage
     @bike_collection_area.bikes.delete_if {|bike| @bikes << bike if bike.working?}

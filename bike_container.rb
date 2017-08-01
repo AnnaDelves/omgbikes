@@ -16,7 +16,7 @@ module BikeContainer
 
   def remove_bike
     fail "This #{self.class.name} is empty, you doughnut" if empty?
-    bikes.pop
+    bikes.shift
   end
 
 
@@ -27,6 +27,14 @@ module BikeContainer
 
   def empty?
     @bikes.empty?
+  end
+
+  def broken_bikes
+    @bikes.reject {|bike| bike.working?}
+  end
+
+  def working_bikes
+    @bikes.reject {|bike| bike.broken?}
   end
 
 end

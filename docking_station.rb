@@ -11,9 +11,4 @@ class DockingStation
     add_bike(returned_bike)
   end
 
-  private
-  def working_bikes
-    @bikes.reject {|bike| bike.broken?}
-  end
-
 end
