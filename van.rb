@@ -30,7 +30,7 @@ class Van
   private
 
   def handle_garage
-    @bike_collection_area.bikes.delete_if {|bike| @bikes << bike if bike.working?}
+    @bike_collection_area.bikes.delete_if {|bike| @bikes << bike if !bike.broken?}
   end
 
   def handle_docking_station
